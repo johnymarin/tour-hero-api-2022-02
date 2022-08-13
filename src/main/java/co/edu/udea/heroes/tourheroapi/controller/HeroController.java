@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/heroes")
 public class HeroController {
 
-    private HeroService heroService;
+    private HeroService heroService ;
 
+    public HeroController(HeroService heroService) {
+        this.heroService = heroService;
+    }
 
     @GetMapping("{id}")
     public Hero getHero(Integer id){
