@@ -1,8 +1,19 @@
 package co.edu.udea.heroes.tourheroapi.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "heroes")
 public class Hero {
+
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
 
     public Hero() {
     }
