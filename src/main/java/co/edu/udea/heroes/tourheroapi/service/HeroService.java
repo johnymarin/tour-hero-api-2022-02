@@ -16,8 +16,10 @@ public class HeroService {
     private ModelMapper modelMapper;
 
 
-    public HeroService(HeroRepository heroRepository) {
+    public HeroService(HeroRepository heroRepository, ModelMapper modelMapper) {
+
         this.heroRepository = heroRepository;
+        this.modelMapper = modelMapper;
     }
 
     public Hero getHero(Integer id){
