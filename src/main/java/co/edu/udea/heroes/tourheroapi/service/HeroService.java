@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class HeroService {
@@ -31,5 +33,10 @@ public class HeroService {
         Optional<Hero> optionalHeroFound = heroRepository.findById(id);
         Hero heroFound = optionalHeroFound.orElseThrow(EntityNotFoundException::new);
         return modelMapper.map(heroFound, HeroDTO.class);
+    }
+
+    public List<HeroDTO> findAllHeroes() {
+        List<Hero> heroesList = (List<Hero>) heroRepository.findAll();
+        return heroesList.stream().map(hero -> modelMapper.map(hero, HeroDTO.class)).collect(Collectors.toList());
     }
 }

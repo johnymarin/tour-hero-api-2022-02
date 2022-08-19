@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping(path ="/heroes")
@@ -30,5 +32,12 @@ public class HeroController {
 
         return ResponseEntity.ok(heroService.getHeroById(id));
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<HeroDTO>>findAllHeroes(){
+        return ResponseEntity.ok(heroService.findAllHeroes());
+    }
+
+    
 
 }
