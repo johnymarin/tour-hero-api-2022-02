@@ -39,4 +39,11 @@ public class HeroService {
         List<Hero> heroesList = (List<Hero>) heroRepository.findAll();
         return heroesList.stream().map(hero -> modelMapper.map(hero, HeroDTO.class)).collect(Collectors.toList());
     }
+
+    public HeroDTO createHero(HeroDTO heroToBeCreatedDTO) {
+        Hero heroToBeCreated = modelMapper.map(heroToBeCreatedDTO, Hero.class);
+        Hero heroCreated = heroRepository.save(heroToBeCreated);
+        HeroDTO heroCreatedDTO = modelMapper.map(heroCreated, HeroDTO.class);
+        return heroCreatedDTO;
+    }
 }

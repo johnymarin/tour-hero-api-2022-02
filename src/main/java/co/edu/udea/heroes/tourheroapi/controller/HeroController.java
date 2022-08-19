@@ -6,6 +6,7 @@ import co.edu.udea.heroes.tourheroapi.service.HeroService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,10 @@ public class HeroController {
         return ResponseEntity.ok(heroService.findAllHeroes());
     }
 
-    
+    @PostMapping(consumes = {"application/JSON", "application/XML"})
+    public ResponseEntity<HeroDTO> createHero(@RequestBody HeroDTO heroDTO){
+        HeroDTO heroToBeCreated = heroService.createHero(heroDTO);
+        return new ResponseEntity<HeroDTO>(heroToBeCreated, null, HttpStatus.CREATED);
+    }
 
 }
