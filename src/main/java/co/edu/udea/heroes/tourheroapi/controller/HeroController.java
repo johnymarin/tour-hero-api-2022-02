@@ -27,7 +27,7 @@ public class HeroController {
         this.heroService = heroService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<HeroDTO> getHeroById(@PathVariable @NonNull Integer id){
         log.debug("el id que se busca es: "+id);
 
@@ -43,6 +43,12 @@ public class HeroController {
     public ResponseEntity<HeroDTO> createHero(@RequestBody HeroDTO heroDTO){
         HeroDTO heroToBeCreated = heroService.createHero(heroDTO);
         return new ResponseEntity<HeroDTO>(heroToBeCreated, null, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletHeroById(@PathVariable @NonNull Integer id){
+        heroService.deletHeroById(id);
+        return new ResponseEntity<Void>(null, null, HttpStatus.OK);
     }
 
 }

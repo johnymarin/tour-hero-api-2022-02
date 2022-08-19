@@ -46,4 +46,10 @@ public class HeroService {
         HeroDTO heroCreatedDTO = modelMapper.map(heroCreated, HeroDTO.class);
         return heroCreatedDTO;
     }
+
+    public void deletHeroById(Integer id) {
+        HeroDTO heroPersistedDTO = getHeroById(id);
+        Hero heroToDelete = modelMapper.map(heroPersistedDTO, Hero.class);
+        heroRepository.delete(heroToDelete);
+    }
 }
