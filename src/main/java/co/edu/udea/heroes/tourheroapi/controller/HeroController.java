@@ -51,4 +51,9 @@ public class HeroController {
         return new ResponseEntity<Void>(null, null, HttpStatus.OK);
     }
 
+    @PutMapping("/")
+    public ResponseEntity <HeroDTO> update(@RequestBody HeroDTO heroDTO){
+        return ResponseEntity.ok(heroService.updateHero(heroDTO));
+    }
+
 }

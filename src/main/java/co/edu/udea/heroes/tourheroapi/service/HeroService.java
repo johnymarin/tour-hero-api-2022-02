@@ -52,4 +52,9 @@ public class HeroService {
         Hero heroToDelete = modelMapper.map(heroPersistedDTO, Hero.class);
         heroRepository.delete(heroToDelete);
     }
+
+    public HeroDTO updateHero(HeroDTO heroToBeUpdatedDTO) {
+        getHeroById(heroToBeUpdatedDTO.getId());
+        return createHero(heroToBeUpdatedDTO);
+    }
 }
